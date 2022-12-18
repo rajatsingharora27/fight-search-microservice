@@ -12,7 +12,7 @@ const setupAndStartServer =async()=>{
     const repo =new CityRepository();
     app.listen(PORT,()=>{
         console.log(`Server Strted at the Port :${PORT} `);
-        repo.deleteCity({id:1});
+        // repo.createCity({name:"New Delhi"});
     })
 }
 
