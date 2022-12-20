@@ -25,7 +25,7 @@ const update = async (req, res) => {
     const city = await cityService.updateCity(req.params.id,req.body);
     return res.status(200).json({
       data: city,
-      message: "City Uodated",
+      message: "City Updated",
       success: true,
     });
   } catch (error) {
