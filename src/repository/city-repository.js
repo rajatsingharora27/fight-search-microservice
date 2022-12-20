@@ -18,6 +18,7 @@ class CityRepository{
                     id:id
                 }
             });
+            return true;
         } catch (error) {
             console.log("Something went wrong in data layer");
             throw {error}
@@ -29,6 +30,7 @@ class CityRepository{
             const city=await City.findByPk({
                 id:id,
             })
+            return city;
         } catch (error) {
             console.log("Something went wrong in data layer");
             throw {error}
