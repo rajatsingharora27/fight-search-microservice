@@ -74,9 +74,33 @@ const get = async (req, res) => {
   }
 };
 
+const getAll= async (req,res)=>{
+
+    try {
+        const allCity= await cityService.getAll();
+        res.status(200).json({
+            data:allCity,
+            message:"Success",
+            success:true
+        })
+    } catch (error) {
+        console.log("Error in the cotroller");
+        res.status(500).json({
+            data:{},
+            message:"Some error occured",
+            error:error
+        })
+    }
+
+
+
+}
+
+
 module.exports = {
   create,
   update,
   get,
   destroy,
+  getAll
 };
