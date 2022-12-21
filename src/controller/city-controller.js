@@ -75,9 +75,8 @@ const get = async (req, res) => {
 };
 
 const getAll= async (req,res)=>{
-
     try {
-        const allCity= await cityService.getAll();
+        const allCity= await cityService.getAll(req.query);
         res.status(200).json({
             data:allCity,
             message:"Success",
