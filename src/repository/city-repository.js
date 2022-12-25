@@ -73,6 +73,20 @@ class CityRepository {
       throw { error };
     }
   }
+
+  async addMultipleCities(cityList) {
+    try {
+      if (cityList.length === 0) {
+        return "Add City";
+      } else {
+        const cities = await City.bulkCreate(cityList);
+        return cities;
+      }
+    } catch (error) {
+      console.log("error occured while adding multiple city in table");
+      throw { error };
+    }
+  }
 }
 
 module.exports = CityRepository;

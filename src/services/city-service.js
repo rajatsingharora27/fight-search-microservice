@@ -47,10 +47,22 @@ class CityService {
   async getAll(filter) {
     console.log(filter);
     try {
-      const cities = await this.cityRepository.getAllCities({name:filter.name});
+      const cities = await this.cityRepository.getAllCities({
+        name: filter.name,
+      });
       return cities;
     } catch (error) {
       console.log("Some error occured while fetching all cities");
+      throw error;
+    }
+  }
+
+  async addMultipleCitiesService(cityList) {
+    try {
+      const city = await this.cityRepository.addMultipleCities(cityList);
+      return city;
+    } catch (error) {
+      console.log("Some Error occured in city Service layer");
       throw error;
     }
   }

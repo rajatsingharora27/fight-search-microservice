@@ -22,7 +22,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const city = await cityService.updateCity(req.params.id,req.body);
+    const city = await cityService.updateCity(req.params.id, req.body);
     return res.status(200).json({
       data: city,
       message: "City Updated",
@@ -74,32 +74,47 @@ const get = async (req, res) => {
   }
 };
 
-const getAll= async (req,res)=>{
-    try {
-        const allCity= await cityService.getAll(req.query);
-        res.status(200).json({
-            data:allCity,
-            message:"Success",
-            success:true
-        })
-    } catch (error) {
-        console.log("Error in the cotroller");
-        res.status(500).json({
-            data:{},
-            message:"Some error occured",
-            error:error
-        })
-    }
+const getAll = async (req, res) => {
+  try {
+    const allCity = await cityService.getAll(req.query);
+    res.status(200).json({
+      data: allCity,
+      message: "Success",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error in the cotroller");
+    res.status(500).json({
+      data: {},
+      message: "Some error occured",
+      error: error,
+    });
+  }
+};
 
-
-
-}
-
+const addMultipleCity = async (req, res) => {
+  try {
+    const allCity = await cityService.addMultipleCitiesService(req.body);
+    res.status(200).json({
+      data: allCity,
+      message: "Success",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error in the cotroller");
+    res.status(500).json({
+      data: {},
+      message: "Some error occured",
+      error: error,
+    });
+  }
+};
 
 module.exports = {
   create,
   update,
   get,
   destroy,
-  getAll
+  getAll,
+  addMultipleCity,
 };
