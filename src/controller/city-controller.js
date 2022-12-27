@@ -110,6 +110,26 @@ const addMultipleCity = async (req, res) => {
   }
 };
 
+const getAllAirportFromCity = async (req, res) => {
+  try {
+    console.log(req.body);
+    const allAirports = await cityService.getAllAirportsFromCitys(req.body);
+    console.log(allAirports, "Controller");
+    res.status(200).json({
+      data: allAirports,
+      message: "Success",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error in the cotroller");
+    res.status(500).json({
+      data: {},
+      message: "Some error occured",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   update,
@@ -117,4 +137,5 @@ module.exports = {
   destroy,
   getAll,
   addMultipleCity,
+  getAllAirportFromCity,
 };

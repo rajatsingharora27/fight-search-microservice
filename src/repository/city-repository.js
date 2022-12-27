@@ -1,4 +1,4 @@
-const { City } = require("../models/index");
+const { City, airport } = require("../models/index");
 const { Op } = require("sequelize");
 
 class CityRepository {
@@ -84,6 +84,29 @@ class CityRepository {
       }
     } catch (error) {
       console.log("error occured while adding multiple city in table");
+      throw { error };
+    }
+  }
+
+  async getAllAirport(cityName) {
+    try {
+      //get the City id from the cityTable;
+      const cityId = await City.findOne({
+        where: {
+          name: cityName.name,
+        },
+      });
+      // console.log(cityId.id);
+      const airports = await airport.findAll({
+        where: {
+          cityId: cityId.id,
+        },
+      });
+
+      // console.log(airports);
+      return airports;
+    } catch (error) {
+      console.log("error occured while in repository layer");
       throw { error };
     }
   }
