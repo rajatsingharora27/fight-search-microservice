@@ -11,7 +11,7 @@ class FlightService {
     try {
       if (!compareTime(data.arrivalTime, data.departureTime)) {
         console.log("error");
-        throw { error: "Time error" };
+        throw { error: "Arrival Time cannot be less than departure Time" };
       }
       const airplane = await this.airplaneRepository.getAirplane(
         data.airplaneId
@@ -22,6 +22,16 @@ class FlightService {
       return flight;
     } catch (error) {
       console.log("Some error occured in Flight service");
+      throw error;
+    }
+  }
+
+  async getAllFlights(filter) {
+    try {
+      const flight = await this.flightRepository.getAllFlight(filter);
+      return flight;
+    } catch (error) {
+      console.log("Some Error in the service");
       throw error;
     }
   }
