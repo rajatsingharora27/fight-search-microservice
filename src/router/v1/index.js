@@ -24,5 +24,7 @@ router.post("/airport/", AirportController.addMultipleAirport);
 //Flight
 router.post("/flights", FlightController.createFlight);
 router.get("/flights", FlightController.getAllFligtAccrdingToFilter);
+router.get("/flights/:id", FlightController.getFlight);
+router.patch("/flights/:id", FlightController.updateFlight);
 
 module.exports = router;

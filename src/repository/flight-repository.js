@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const { Flights } = require("../models/index");
 
 class FlightRepository {
@@ -31,7 +31,7 @@ class FlightRepository {
 
   async getFlight(id) {
     try {
-      const flight = await Flights.findByPk(data);
+      const flight = await Flights.findByPk(id);
       return flight;
     } catch (error) {
       console.log("Some error in repository");
@@ -45,6 +45,22 @@ class FlightRepository {
       const flight = await Flights.findAll({
         where: fliterObject,
       });
+      return flight;
+    } catch (error) {
+      console.log("Some error in repository");
+      throw error;
+    }
+  }
+
+  async updateFlight(flightid, data) {
+    try {
+      const flight = await Flights.update(data, {
+        where: {
+          id: flightid,
+        },
+      });
+      // const f = this.getFlight(flightid);
+      // console.log(f);
       return flight;
     } catch (error) {
       console.log("Some error in repository");

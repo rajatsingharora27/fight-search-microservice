@@ -16,9 +16,9 @@ const setupAndStartServer = async () => {
     console.log(`Server Strted at the Port :${PORT} `);
   });
 
-  if (process.env.SYNC_DB) {
-    db.sequelize.sync({ alter: true });
-  }
+  // if (process.env.SYNC_DB) {
+  //   db.sequelize.sync({ alter: true });
+  // }
 
   //   const city = await City.findOne({
   //     where: {
